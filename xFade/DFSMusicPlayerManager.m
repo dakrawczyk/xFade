@@ -11,8 +11,6 @@
 
 @interface DFSMusicPlayerManager()
 
-@property (nonatomic, strong) AVAudioPlayer *audioPlayerA;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayerB;
 
 @end
 
@@ -32,7 +30,6 @@
     self = [super init];
     if (self)
     {
-        self.myPlayer = [MPMusicPlayerController applicationMusicPlayer];
 
         [self registerForNotifications];
         
@@ -47,18 +44,12 @@
 {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     
-
-    [notificationCenter addObserver:self selector:@selector(handle_NowPlayingItemChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:self.myPlayer];
-    
-    [notificationCenter addObserver:self selector:@selector(handle_PlaybackStateChanged:) name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:self.myPlayer];
-    
-    [self.myPlayer beginGeneratingPlaybackNotifications];
-
 }
 
 -(void)loadSongDeckA:(MPMediaItem *)item
 {
     self.audioPlayerA = [[AVAudioPlayer alloc]initWithContentsOfURL:[item valueForProperty:MPMediaItemPropertyAssetURL]  error:nil];
+    self.deckACurrentItem = item;
     [self.audioPlayerA prepareToPlay];
 
 }
@@ -77,6 +68,7 @@
 -(void)loadSongDeckB:(MPMediaItem *)item
 {
     self.audioPlayerB = [[AVAudioPlayer alloc]initWithContentsOfURL:[item valueForProperty:MPMediaItemPropertyAssetURL]  error:nil];
+    self.audioPlayerB.volume = 0;
     [self.audioPlayerB prepareToPlay];
     
 }
@@ -93,14 +85,22 @@
     
 }
 
--(void)handle_NowPlayingItemChanged:(NSNotification*)notification
+
+-(void)swapDeckB
 {
     
+    [self.audioPlayerA stop];
+    self.audioPlayerA = nil;
+    self.audioPlayerA = self.audioPlayerB;
+    self.deckACurrentItem = self.deckBCurrentItem;
+    self.deckBCurrentItem = nil;
+    self.audioPlayerB = nil;
+    [self.rootVC showNowPlaying];
 }
 
--(void)handle_PlaybackStateChanged:(NSNotification*)notification
+-(CGFloat)currentPlayTime
 {
-    
+    return self.audioPlayerA.currentTime;
 }
 
 -(void)pauseCurrentPlayer

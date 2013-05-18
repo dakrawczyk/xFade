@@ -20,12 +20,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <view hidden="YES" contentMode="scaleToFill" id="jPO-O7-BwC">
-                                        <rect key="frame" x="74" y="0.0" width="252" height="84"/>
+                                    <view contentMode="scaleToFill" id="jPO-O7-BwC">
+                                        <rect key="frame" x="78" y="8" width="248" height="78"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="hET-kV-7cV" userLabel="progressView">
-                                                <rect key="frame" x="12" y="0.0" width="0.0" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="78"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" red="0.1019607931" green="0.392156899" blue="0.68235296010000002" alpha="0.35999999999999999" colorSpace="deviceRGB"/>
                                             </view>
@@ -52,6 +52,10 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="stz-fJ-4hQ" appends="YES" id="YJU-HH-lt6"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" id="k27-Ud-YrA">
                                 <rect key="frame" x="0.0" y="86" width="320" height="82"/>
@@ -141,6 +145,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LYV-mb-fkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="stz-fJ-4hQ" userLabel="nowPlayingViewTapped">
+                    <connections>
+                        <action selector="nowPlayingViewTapped:" destination="xRP-2k-AVf" id="vsm-Pt-WTC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-247" y="164"/>
         </scene>
@@ -417,6 +426,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" id="pUU-jh-AZm" userLabel="bottomView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="bYI-kM-mLW">
+                                                            <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ui_songs_divider.png" id="khF-WQ-yMx">
+                                                    <rect key="frame" x="-31" y="61" width="382" height="2"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <view contentMode="scaleToFill" id="cFi-rQ-1Mz" userLabel="topView">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -440,24 +464,36 @@
                                                             <color key="textColor" white="0.4130360401" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SSR-CO-H9t">
+                                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BPM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SSR-CO-H9t">
                                                             <rect key="frame" x="281" y="7" width="33" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" white="0.4130360401" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cpG-az-XOj">
+                                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cpG-az-XOj">
                                                             <rect key="frame" x="281" y="30" width="33" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" white="0.4130360401" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ui_songs_divider.png" id="khF-WQ-yMx">
-                                                            <rect key="frame" x="-31" y="61" width="382" height="2"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0Lb-Tp-NJA">
+                                                            <rect key="frame" x="269" y="7" width="51" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <state key="normal" image="ui_songs_syncIcon.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="selected" image="ui_songs_syncIconActive.png"/>
+                                                            <state key="highlighted" image="ui_songs_syncIconActive.png">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="syncPressed:" destination="xNy-sc-pJv" eventType="touchUpInside" id="iuR-q8-1gu"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -467,7 +503,9 @@
                                         <connections>
                                             <outlet property="albumImageView" destination="wnX-xs-NDN" id="mvL-nu-XFC"/>
                                             <outlet property="artistLabel" destination="ewC-E2-KHD" id="KSP-tz-At6"/>
+                                            <outlet property="bottomAlbumImageView" destination="bYI-kM-mLW" id="q52-Xg-w7b"/>
                                             <outlet property="bpmLabel" destination="cpG-az-XOj" id="zoj-WQ-kLf"/>
+                                            <outlet property="syncButton" destination="0Lb-Tp-NJA" id="Jcx-Kd-7gq"/>
                                             <outlet property="titleLabel" destination="A28-nK-Vhg" id="K4o-e0-2fh"/>
                                             <outlet property="topView" destination="cFi-rQ-1Mz" id="jf8-pb-qji"/>
                                         </connections>
@@ -505,7 +543,81 @@
         <image name="ui_loadingScreen.png" width="382" height="678"/>
         <image name="ui_loadingScreen_fadeIn.png" width="382" height="678"/>
         <image name="ui_songs_divider.png" width="382" height="2"/>
+        <image name="ui_songs_syncIcon.png" width="28" height="26"/>
+        <image name="ui_songs_syncIconActive.png" width="28" height="26"/>
     </resources>
+    <classes>
+        <class className="DFSAlbumViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSAlbumViewController.h"/>
+        </class>
+        <class className="DFSArtistCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSArtistCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberOfAlbumsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DFSArtistViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSArtistViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DFSLeftHUDViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSLeftHUDViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="paralaxImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="paralaxView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DFSNowPlayingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSNowPlayingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="airplayTapped:"/>
+                <relationship kind="action" name="nextTapped:"/>
+                <relationship kind="action" name="nowPlayingViewTapped:"/>
+                <relationship kind="action" name="playPauseTapped:"/>
+                <relationship kind="action" name="previousTapped:"/>
+                <relationship kind="outlet" name="albumImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DFSRightHUDViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSRightHUDViewController.h"/>
+        </class>
+        <class className="DFSRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSRootViewController.h"/>
+        </class>
+        <class className="DFSSongCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSSongCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="albumImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artistLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bottomAlbumImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bpmLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="syncButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="DFSSongsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSSongsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="syncPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="songsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DFSSplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DFSSplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="firstImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="secondImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

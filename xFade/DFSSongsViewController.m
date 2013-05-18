@@ -51,11 +51,13 @@
     static NSString *cellID = @"songCell";
     
     DFSSongCell *cell = [self.songsTableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
+
     if (!cell) {
         cell = [[DFSSongCell alloc]init];
     }
     
+
+    cell.syncButton.tag = indexPath.row;
     
      MPMediaItem *item = self.songsArray[indexPath.row];
 
@@ -64,17 +66,48 @@
     cell.bpmLabel.text =[NSString stringWithFormat:@"%@",[item valueForProperty:MPMediaItemPropertyBeatsPerMinute]] ;
     
     MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    cell.albumImageView.image = [artwork imageWithSize:CGSizeMake(48, 48)];
+    cell.albumImageView.image = [artwork imageWithSize:CGSizeMake(61, 61)];
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.songsTableView deselectRowAtIndexPath:indexPath animated:YES];
+    DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:indexPath];
     
-    [[DFSMusicPlayerManager sharedInstance]loadSongDeckA:self.songsArray[indexPath.row]];
-    [[DFSMusicPlayerManager sharedInstance] playSongA:self.songsArray[indexPath.row]];
+    
+    if (cell.syncButton.selected)
+    {
+        [[DFSMusicPlayerManager sharedInstance]swapDeckB];
+        [cell slideForOpen:NO];
+        cell.syncButton.selected = NO;
+    }else
+    {
+        [self.songsTableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        [[DFSMusicPlayerManager sharedInstance]loadSongDeckA:self.songsArray[indexPath.row]];
+        [[DFSMusicPlayerManager sharedInstance] playSongA:self.songsArray[indexPath.row]];
+    }
 }
+
+- (IBAction)syncPressed:(UIButton *)button
+{
+
+    button.selected = !button.selected;
+    if (button.selected)
+    {
+        [[DFSMusicPlayerManager sharedInstance]loadSongDeckB:self.songsArray[button.tag]];
+        [[DFSMusicPlayerManager sharedInstance] playSongB:self.songsArray[button.tag]];
+    }else
+    {
+        [[[DFSMusicPlayerManager sharedInstance] audioPlayerB]stop];
+        [[DFSMusicPlayerManager sharedInstance] setDeckBCurrentItem:nil];
+        DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]];
+        [cell slideForOpen:NO];
+        
+    }
+}
+
+
 
 @end

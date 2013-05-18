@@ -7,7 +7,7 @@
 //
 #define kNowPlayingHeight 84 
 #define kDrawerHeight 82
-#define kMaxProgressViewWidth 240
+#define kMaxProgressViewWidth 248
 
 #import "DFSNowPlayingViewController.h"
 
@@ -42,14 +42,18 @@
 
 -(void)updateProgressView
 {
-    MPMediaItem *item =[[[DFSMusicPlayerManager sharedInstance] myPlayer]nowPlayingItem];
+    MPMediaItem *item =[[DFSMusicPlayerManager sharedInstance] deckACurrentItem];
     
     if (!item) {
+        self.progressView.hidden =YES;
         return;
+    }else
+    {
+        self.progressView.hidden = NO;
     }
 
     CGFloat playbackDuration = [[item valueForProperty:MPMediaItemPropertyPlaybackDuration] floatValue];
-    CGFloat currentValue = [[[DFSMusicPlayerManager sharedInstance]myPlayer]currentPlaybackTime];
+    CGFloat currentValue = [[DFSMusicPlayerManager sharedInstance] currentPlayTime];
     
     
     CGFloat percent = currentValue/playbackDuration;
@@ -107,6 +111,11 @@
 {
 }
 
+- (IBAction)nowPlayingViewTapped:(id)sender
+{
+    [[DFSMusicPlayerManager sharedInstance]pauseCurrentPlayer];
+
+}
 
 - (IBAction)playPauseTapped:(id)sender
 {

@@ -28,7 +28,8 @@
     
     self.viewController.leftPanel = [DFSLeftHUDViewController newFromStoryboard];
     self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
-    
+    self.viewController.allowLeftSwipe = NO;
+    self.viewController.allowRightSwipe = NO;
     
     UIImage* navBg = [UIImage imageNamed:@"bg_global_topNav"];
     

@@ -13,9 +13,10 @@
 
 @interface DFSMusicPlayerManager : NSObject
 
-
-@property (nonatomic, strong) MPMusicPlayerController *myPlayer;
 @property (nonatomic, strong) DFSRootViewController *rootVC;
+
+@property (nonatomic, strong) AVAudioPlayer *audioPlayerA;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayerB;
 
 @property (nonatomic, strong) MPMediaItem *deckACurrentItem;
 @property (nonatomic, strong) MPMediaItem *deckBCurrentItem;
@@ -28,6 +29,10 @@
 -(void)playSongB:(MPMediaItem*)item;
 -(void)loadSongDeckB:(MPMediaItem *)item;
 
+-(void)swapDeckB;
+
 -(void)pauseCurrentPlayer;
+
+-(CGFloat)currentPlayTime;
 
 @end
