@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *songsTableView;
 
 @property (nonatomic, strong) NSArray *songsArray;
+@property (nonatomic, strong) NSNumber *currentSyncingCell;
 
 @end
 
@@ -75,12 +76,13 @@
 {
     DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:indexPath];
     
-    
     if (cell.syncButton.selected)
     {
         [[DFSMusicPlayerManager sharedInstance]swapDeckB];
         [cell slideForOpen:NO];
         cell.syncButton.selected = NO;
+        self.songsTableView.scrollEnabled = YES;
+
     }else
     {
         [self.songsTableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -96,16 +98,31 @@
     button.selected = !button.selected;
     if (button.selected)
     {
+        if (self.currentSyncingCell)
+        {
+            [self closeCellAtIndex:[self.currentSyncingCell intValue]];
+        }
+        self.currentSyncingCell = @(button.tag);
         [[DFSMusicPlayerManager sharedInstance]loadSongDeckB:self.songsArray[button.tag]];
         [[DFSMusicPlayerManager sharedInstance] playSongB:self.songsArray[button.tag]];
+        self.songsTableView.scrollEnabled = NO;
+        [self.songsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }else
     {
-        [[[DFSMusicPlayerManager sharedInstance] audioPlayerB]stop];
-        [[DFSMusicPlayerManager sharedInstance] setDeckBCurrentItem:nil];
-        DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]];
-        [cell slideForOpen:NO];
-        
+        [self closeCellAtIndex:button.tag];
     }
+}
+
+-(void)closeCellAtIndex:(int)idx
+{
+    [[[DFSMusicPlayerManager sharedInstance] audioPlayerB]stop];
+    [[DFSMusicPlayerManager sharedInstance] setDeckBCurrentItem:nil];
+    DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+    cell.syncButton.selected = NO;
+    [cell slideForOpen:NO];
+    self.currentSyncingCell = nil;
+
+    self.songsTableView.scrollEnabled = YES;
 }
 
 

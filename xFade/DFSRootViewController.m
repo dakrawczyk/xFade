@@ -48,6 +48,10 @@
     self.currentVC = songsVC;
 
     
+    [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];    
+    [self becomeFirstResponder];
+
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -69,7 +73,14 @@
 
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
 
+}
 -(void)setCurrentVC:(UIViewController *)currentVC
 {
     [self.currentVC.view removeFromSuperview];
@@ -82,11 +93,12 @@
     self.currentVC.view.frame = self.view.bounds;
     if (self.nowPlayingVC)
     {
-        self.currentVC.view.frame = CGRectMake(self.currentVC.view.frame.origin.x, self.currentVC.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - self.nowPlayingVC.view.frame.size.height);
+        self.currentVC.view.frame = CGRectMake(self.currentVC.view.frame.origin.x, self.currentVC.view.frame.origin.y, self.view.frame.size.width, self.nowPlayingVC.view.frame.origin.y+10);
 
     }
     [self addChildViewController:self.currentVC];
     [self.view addSubview:self.currentVC.view];
+    [self.view bringSubviewToFront:self.nowPlayingVC.view];
 }
 
 
@@ -97,7 +109,18 @@
     self.nowPlayingVC.artistLabel.text = [item valueForProperty:MPMediaItemPropertyArtist];
     MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
     self.nowPlayingVC.albumImageView.image = [artwork imageWithSize:CGSizeMake(80, 80)];
+    
+    
 
+
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [item valueForProperty:MPMediaItemPropertyArtist], MPMediaItemPropertyArtist,
+                                                               [item valueForProperty:MPMediaItemPropertyTitle], MPMediaItemPropertyTitle,
+                                                               [item valueForProperty:MPMediaItemPropertyAlbumTitle], MPMediaItemPropertyAlbumTitle,
+                                                               nil]];
+    
+//    AVAsset *asset = [AVAsset assetWithURL:[item valueForProperty:MPMediaItemPropertyAssetURL]];
+    
 }
 -(void)showNowPlaying
 {
@@ -109,7 +132,6 @@
         
         [self updateNowPlaying];
 
-        
         [self.view addSubview:self.nowPlayingVC.view];
         [UIView animateWithDuration:.3 animations:^{
             self.nowPlayingVC.view.frame = CGRectMake(0, self.view.frame.size.height - kNowPlayingHeight, self.nowPlayingVC.view.frame.size.width, self.nowPlayingVC.view.frame.size.height);
@@ -122,7 +144,24 @@
         [self updateNowPlaying];
 
     }
-
-    
 }
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    //if it is a remote control event handle it correctly
+    if (event.type == UIEventTypeRemoteControl) {
+        if (event.subtype == UIEventSubtypeRemoteControlPlay) {
+            [[DFSMusicPlayerManager sharedInstance] pauseCurrentPlayer];
+        } else if (event.subtype == UIEventSubtypeRemoteControlPause) {
+            [[DFSMusicPlayerManager sharedInstance] pauseCurrentPlayer];
+        } else if (event.subtype == UIEventSubtypeRemoteControlTogglePlayPause) {
+            [[DFSMusicPlayerManager sharedInstance] pauseCurrentPlayer];
+        }
+    }
+}
+
+
 @end

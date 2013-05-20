@@ -30,27 +30,22 @@
     self = [super init];
     if (self)
     {
-
-        [self registerForNotifications];
         
-        [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryPlayback error:nil];
-        [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];
-
     }
     return self;
 }
 
--(void)registerForNotifications
-{
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    
-}
 
 -(void)loadSongDeckA:(MPMediaItem *)item
 {
     self.audioPlayerA = [[AVAudioPlayer alloc]initWithContentsOfURL:[item valueForProperty:MPMediaItemPropertyAssetURL]  error:nil];
     self.deckACurrentItem = item;
     [self.audioPlayerA prepareToPlay];
+    
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    
+    [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryPlayback error:nil];
+
 
 }
 

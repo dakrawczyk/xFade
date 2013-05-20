@@ -37,6 +37,7 @@
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureFired:)];
     [self.view addGestureRecognizer:panGesture];
+
 }
 
 
@@ -131,5 +132,8 @@
 {
 
 }
+
+#pragma mark - remote control events
+
 
 @end

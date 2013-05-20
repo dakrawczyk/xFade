@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WaveFormViewIOS.h"
 
 @interface DFSNowPlayingViewController : UIViewController
 
@@ -15,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet WaveFormViewIOS *waveFormView;
 
 @end

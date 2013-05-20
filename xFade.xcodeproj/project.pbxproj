@@ -107,6 +107,12 @@
 		559827EA173A222B0003406A /* ui_hud_viewInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 559827AC173A222B0003406A /* ui_hud_viewInactive@2x.png */; };
 		559827EB173A946D0003406A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5531D0261739FA4F00579232 /* Icon@2x.png */; };
 		559827EC173A94730003406A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5531D0241739FA4B00579232 /* Icon.png */; };
+		55D6EB53174ABF8A002E00F5 /* WaveFormViewIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D6EB52174ABF8A002E00F5 /* WaveFormViewIOS.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55D6EB5D174AC26D002E00F5 /* WaveSampleProvider.h in Sources */ = {isa = PBXBuildFile; fileRef = 55D6EB5A174AC256002E00F5 /* WaveSampleProvider.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55D6EB5E174AC26D002E00F5 /* WaveSampleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D6EB5B174AC256002E00F5 /* WaveSampleProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55D6EB5F174AC26D002E00F5 /* WaveSampleProviderDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 55D6EB5C174AC256002E00F5 /* WaveSampleProviderDelegate.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55D6EB61174AC2A5002E00F5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D6EB60174AC2A5002E00F5 /* AudioToolbox.framework */; };
+		55D6EB63174AC2DF002E00F5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D6EB62174AC2DF002E00F5 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +233,13 @@
 		559827AA173A222B0003406A /* ui_hud_viewActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui_hud_viewActive@2x.png"; sourceTree = "<group>"; };
 		559827AB173A222B0003406A /* ui_hud_viewInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_hud_viewInactive.png; sourceTree = "<group>"; };
 		559827AC173A222B0003406A /* ui_hud_viewInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui_hud_viewInactive@2x.png"; sourceTree = "<group>"; };
+		55D6EB51174ABF8A002E00F5 /* WaveFormViewIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveFormViewIOS.h; sourceTree = "<group>"; };
+		55D6EB52174ABF8A002E00F5 /* WaveFormViewIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveFormViewIOS.m; sourceTree = "<group>"; };
+		55D6EB5A174AC256002E00F5 /* WaveSampleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveSampleProvider.h; sourceTree = "<group>"; };
+		55D6EB5B174AC256002E00F5 /* WaveSampleProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveSampleProvider.m; sourceTree = "<group>"; };
+		55D6EB5C174AC256002E00F5 /* WaveSampleProviderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveSampleProviderDelegate.h; sourceTree = "<group>"; };
+		55D6EB60174AC2A5002E00F5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		55D6EB62174AC2DF002E00F5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D6EB63174AC2DF002E00F5 /* CoreMedia.framework in Frameworks */,
+				55D6EB61174AC2A5002E00F5 /* AudioToolbox.framework in Frameworks */,
 				5531D0231739F6B000579232 /* AVFoundation.framework in Frameworks */,
 				5541E59B173878380029E14E /* QuartzCore.framework in Frameworks */,
 				5541E56D173093440029E14E /* MediaPlayer.framework in Frameworks */,
@@ -272,6 +287,8 @@
 		5541E53A17308BF70029E14E = {
 			isa = PBXGroup;
 			children = (
+				55D6EB62174AC2DF002E00F5 /* CoreMedia.framework */,
+				55D6EB60174AC2A5002E00F5 /* AudioToolbox.framework */,
 				5531D058173A15DC00579232 /* Default@2x.png */,
 				5541E54C17308BF70029E14E /* xFade */,
 				5541E54517308BF70029E14E /* Frameworks */,
@@ -367,6 +384,7 @@
 		5541E58D1738765B0029E14E /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				55D6EB50174ABF8A002E00F5 /* WaveFormClasses */,
 				5541E58E173876790029E14E /* JASidePanelController.h */,
 				5541E58F173876790029E14E /* JASidePanelController.m */,
 				5541E590173876790029E14E /* UIViewController+JASidePanel.h */,
@@ -561,6 +579,18 @@
 			path = _screenshots;
 			sourceTree = "<group>";
 		};
+		55D6EB50174ABF8A002E00F5 /* WaveFormClasses */ = {
+			isa = PBXGroup;
+			children = (
+				55D6EB5A174AC256002E00F5 /* WaveSampleProvider.h */,
+				55D6EB5B174AC256002E00F5 /* WaveSampleProvider.m */,
+				55D6EB5C174AC256002E00F5 /* WaveSampleProviderDelegate.h */,
+				55D6EB51174ABF8A002E00F5 /* WaveFormViewIOS.h */,
+				55D6EB52174ABF8A002E00F5 /* WaveFormViewIOS.m */,
+			);
+			path = WaveFormClasses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -702,6 +732,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D6EB5D174AC26D002E00F5 /* WaveSampleProvider.h in Sources */,
+				55D6EB5E174AC26D002E00F5 /* WaveSampleProvider.m in Sources */,
+				55D6EB5F174AC26D002E00F5 /* WaveSampleProviderDelegate.h in Sources */,
 				5541E55317308BF70029E14E /* main.m in Sources */,
 				5541E55717308BF70029E14E /* DFSAppDelegate.m in Sources */,
 				5541E56317308BF70029E14E /* DFSRootViewController.m in Sources */,
@@ -717,6 +750,7 @@
 				55848EC01739A7210037FED6 /* DFSArtistViewController.m in Sources */,
 				55848EC71739B0B60037FED6 /* DFSArtistCell.m in Sources */,
 				5531D02C173A034900579232 /* DFSSplashViewController.m in Sources */,
+				55D6EB53174ABF8A002E00F5 /* WaveFormViewIOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
