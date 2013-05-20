@@ -24,13 +24,15 @@
 
 -(void)awakeFromNib
 {
+    self.firstImageView.alpha = 1;
+    self.secondImageView.alpha = 1;
 }
 
 -(void)performLoadingAnimationWithBlock:(void (^)(void))block
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [UIView animateWithDuration:.6 delay:.2 options:nil animations:^{
+        [UIView animateWithDuration:.6 delay:0 options:nil animations:^{
             self.firstImageView.alpha = 1;
             self.secondImageView.alpha = 1;
         } completion:^(BOOL finished) {

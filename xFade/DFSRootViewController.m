@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) DFSNowPlayingViewController *nowPlayingVC;
 @property (nonatomic, strong) UIViewController *currentVC;
+
+@property (nonatomic, strong) DFSSplashViewController *splashVC;
 @end
 
 @implementation DFSRootViewController
@@ -43,13 +45,21 @@
     self.navigationItem.leftBarButtonItem = barButton;
     
 
-    
     DFSSongsViewController *songsVC = [DFSSongsViewController newFromStoryboard];
     self.currentVC = songsVC;
 
+    if (self.showLaunch)
+    {
+        self.navigationController.navigationBarHidden = YES;
+        self.splashVC = [DFSSplashViewController newFromStoryboard];
+        self.splashVC.view.frame = CGRectMake(0, 0, 320, 568);
+//        [[[[UIApplication sharedApplication]keyWindow]rootViewController].view addSubview:self.splashVC.view];
+        [self.view addSubview:self.splashVC.view];
+    }
+    
+
     
     [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];    
-    [self becomeFirstResponder];
 
     
 }
@@ -61,13 +71,15 @@
     
     if (self.showLaunch)
     {
-        DFSSplashViewController *splashVC = [DFSSplashViewController newFromStoryboard];
-        splashVC.view.frame = CGRectMake(0, 0, 320, 568);
-        [[[[UIApplication sharedApplication]keyWindow]rootViewController].view addSubview:splashVC.view];
-        [splashVC performLoadingAnimationWithBlock:^{
-            [splashVC.view removeFromSuperview];            
+        [self.splashVC performLoadingAnimationWithBlock:^{
+            [self.splashVC.view removeFromSuperview];
+            [self becomeFirstResponder];
+
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+
         }];
         self.showLaunch = NO;
+        
     }
     
 
