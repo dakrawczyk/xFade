@@ -144,6 +144,7 @@
         
         [self updateNowPlaying];
 
+//        [[[UIApplication sharedApplication]keyWindow]addSubview:self.nowPlayingVC.view];
         [self.view addSubview:self.nowPlayingVC.view];
         [UIView animateWithDuration:.3 animations:^{
             self.nowPlayingVC.view.frame = CGRectMake(0, self.view.frame.size.height - kNowPlayingHeight, self.nowPlayingVC.view.frame.size.width, self.nowPlayingVC.view.frame.size.height);

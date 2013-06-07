@@ -145,6 +145,7 @@
                     <connections>
                         <outlet property="albumImageView" destination="oQS-5E-eVu" id="zk3-NE-iRr"/>
                         <outlet property="artistLabel" destination="FRl-qv-1r5" id="p8b-ka-bdE"/>
+                        <outlet property="playPauseButton" destination="jOk-0T-LcW" id="Hmk-LH-rjc"/>
                         <outlet property="progressView" destination="hET-kV-7cV" id="eHs-kd-3nQ"/>
                         <outlet property="titleLabel" destination="ECy-1z-leG" id="lRr-P4-ePU"/>
                         <outlet property="waveFormView" destination="0zu-R0-w1m" id="lDd-TT-FFb"/>
@@ -304,7 +305,7 @@
                                                     <rect key="frame" x="69" y="7" width="212" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="# of Songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zBs-7Q-uuU">
@@ -315,7 +316,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="7AA-8d-fDj">
-                                                    <rect key="frame" x="11" y="4" width="53" height="53"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -432,6 +433,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ui_songs_divider.png" id="khF-WQ-yMx">
+                                                    <rect key="frame" x="-31" y="61" width="382" height="2"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <view contentMode="scaleToFill" id="pUU-jh-AZm" userLabel="bottomView">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -440,13 +445,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rYI-MO-cm0">
+                                                            <rect key="frame" x="56" y="0.0" width="60" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ui_songs_divider.png" id="khF-WQ-yMx">
-                                                    <rect key="frame" x="-31" y="61" width="382" height="2"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <view contentMode="scaleToFill" id="cFi-rQ-1Mz" userLabel="topView">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -455,6 +464,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N9E-W0-Z3M">
+                                                            <rect key="frame" x="-60" y="40" width="60" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A28-nK-Vhg">
                                                             <rect key="frame" x="72" y="7" width="202" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -511,6 +528,8 @@
                                             <outlet property="artistLabel" destination="ewC-E2-KHD" id="KSP-tz-At6"/>
                                             <outlet property="bottomAlbumImageView" destination="bYI-kM-mLW" id="q52-Xg-w7b"/>
                                             <outlet property="bpmLabel" destination="cpG-az-XOj" id="zoj-WQ-kLf"/>
+                                            <outlet property="songAPercentLabel" destination="rYI-MO-cm0" id="GnC-rf-C6J"/>
+                                            <outlet property="songBPercentLabel" destination="N9E-W0-Z3M" id="AtA-y7-vUw"/>
                                             <outlet property="syncButton" destination="0Lb-Tp-NJA" id="Jcx-Kd-7gq"/>
                                             <outlet property="titleLabel" destination="A28-nK-Vhg" id="K4o-e0-2fh"/>
                                             <outlet property="topView" destination="cFi-rQ-1Mz" id="jf8-pb-qji"/>

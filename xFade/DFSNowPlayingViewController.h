@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet WaveFormViewIOS *waveFormView;
 
+-(void)swipedOpen;
+
 @end

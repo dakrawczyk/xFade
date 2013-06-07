@@ -37,7 +37,7 @@
 {
     MPMediaQuery *query=[MPMediaQuery artistsQuery];
     NSArray *artists=[query collections];
-    NSMutableOrderedSet *orderedArtistSet = [NSMutableOrderedSet orderedSet];
+//    NSMutableOrderedSet *orderedArtistSet = [NSMutableOrderedSet orderedSet];
     
 //    for(MPMediaItemCollection *collection in artists)
 //    {
@@ -77,9 +77,11 @@
     MPMediaItemCollection *collection  = self.artistsArray[indexPath.row];
     
     cell.artistNameLabel.text = [[collection representativeItem] valueForProperty:MPMediaItemPropertyArtist];
-    cell.numberOfAlbumsLabel.text = @"";
+
     
+    cell.numberOfAlbumsLabel.text = [NSString stringWithFormat:@"Songs: %lu",(unsigned long)[collection count]];
     
+
     return cell;
 
 }

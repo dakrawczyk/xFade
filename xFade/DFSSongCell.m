@@ -11,8 +11,9 @@
 #import "DFSSongCell.h"
 
 @interface DFSSongCell()
+@property (weak, nonatomic) IBOutlet UILabel *songAPercentLabel;
 
-
+@property (weak, nonatomic) IBOutlet UILabel *songBPercentLabel;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end
@@ -135,18 +136,26 @@
 -(void)adjustVolume
 {
     CGFloat volPercent = self.topView.frame.origin.x / kSongCellWidthWithAlbum;
-    
     if (volPercent < .5)
     {
         CGFloat valueB = (((volPercent)*2));
+        
         [[DFSMusicPlayerManager sharedInstance]audioPlayerB].volume = valueB;
         [[DFSMusicPlayerManager sharedInstance]audioPlayerA].volume = 1;
+        
+        ;
+        self.songBPercentLabel.text =[[[DFSNumberFormatters defaultFormatters] numberFormatPercentageWithDecimals:0] stringFromNumber:@(valueB)];
+        self.songAPercentLabel.text = [NSString stringWithFormat:@"100%%"];
+
     }
     
     if (volPercent > .5)
     {
         [[DFSMusicPlayerManager sharedInstance]audioPlayerA].volume =(1-(volPercent))*2;
         [[DFSMusicPlayerManager sharedInstance]audioPlayerB].volume = 1;
+        
+        self.songAPercentLabel.text =[[[DFSNumberFormatters defaultFormatters] numberFormatPercentageWithDecimals:0] stringFromNumber:@((1-(volPercent))*2)];
+        self.songBPercentLabel.text = [NSString stringWithFormat:@"100%%"];
     }
     
 }

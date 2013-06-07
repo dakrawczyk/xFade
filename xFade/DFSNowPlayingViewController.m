@@ -13,10 +13,12 @@
 
 @interface DFSNowPlayingViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (nonatomic, strong) NSTimer *updateProgressViewTimer;
 @property (nonatomic, strong) DFSRootViewController *rootVC;
+@property (nonatomic) BOOL panMovementUP;
 @end
 
 @implementation DFSNowPlayingViewController
@@ -78,7 +80,9 @@
         {
             if (ABS(translation.x)<ABS(translation.y)) //ignore horizontal movement
             {
-                if ((newYValue > (self.rootVC.view.frame.size.height - self.view.frame.size.height)))
+//                NSLog(@"%f",newYValue);//400 & 482
+                self.panMovementUP = (newYValue < self.view.frame.origin.y);
+                if ((newYValue > (self.rootVC.view.frame.size.height - self.view.frame.size.height))&&(newYValue < (self.rootVC.view.frame.size.height - kNowPlayingHeight)) )
                 {
                     self.view.frame = CGRectMake(self.view.frame.origin.x, newYValue, self.view.frame.size.width, self.view.frame.size.height);
                     [panGesture setTranslation:CGPointMake(0, 0) inView:self.view];
@@ -90,7 +94,10 @@
             
         case UIGestureRecognizerStateEnded:
         {
-            
+            if (self.panMovementUP)
+                [self swipedOpen];
+            else
+                [self swipedClosed];
         }
             break;
             
@@ -105,6 +112,24 @@
     }
 }
 
+-(void)swipedOpen
+{
+    [UIView animateWithDuration:.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = (self.rootVC.view.frame.size.height - self.view.frame.size.height);
+        self.view.frame = frame;
+    }];
+}
+
+-(void)swipedClosed
+{
+    [UIView animateWithDuration:.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = (self.rootVC.view.frame.size.height - kNowPlayingHeight);
+        self.view.frame = frame;
+    }];
+
+}
 
 #pragma mark - audio control methods
 
@@ -115,12 +140,14 @@
 - (IBAction)nowPlayingViewTapped:(id)sender
 {
     [[DFSMusicPlayerManager sharedInstance]pauseCurrentPlayer];
-
+    self.playPauseButton.selected = ![[[DFSMusicPlayerManager sharedInstance]audioPlayerA]isPlaying];
 }
 
 - (IBAction)playPauseTapped:(id)sender
 {
     [[DFSMusicPlayerManager sharedInstance]pauseCurrentPlayer];
+
+    self.playPauseButton.selected = ![[[DFSMusicPlayerManager sharedInstance]audioPlayerA]isPlaying];
     
 }
 

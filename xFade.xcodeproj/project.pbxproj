@@ -40,6 +40,9 @@
 		5541E59B173878380029E14E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5541E59A173878380029E14E /* QuartzCore.framework */; };
 		5541E5AC1738A07F0029E14E /* newD5Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5541E5AA1738A07F0029E14E /* newD5Logo.png */; };
 		5541E5AD1738A07F0029E14E /* newD5Logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5541E5AB1738A07F0029E14E /* newD5Logo@2x.png */; };
+		5576F06C17621F48009203D9 /* DFSNumberFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576F06B17621F48009203D9 /* DFSNumberFormatters.m */; };
+		5576F07217623F85009203D9 /* DFSIndexedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576F07117623F85009203D9 /* DFSIndexedListView.m */; };
+		5576F07417623FC3009203D9 /* DFSIndexedListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5576F07317623FC3009203D9 /* DFSIndexedListView.xib */; };
 		55848EBD1739A7180037FED6 /* DFSAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55848EBC1739A7180037FED6 /* DFSAlbumViewController.m */; };
 		55848EC01739A7210037FED6 /* DFSArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55848EBF1739A7210037FED6 /* DFSArtistViewController.m */; };
 		55848EC71739B0B60037FED6 /* DFSArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55848EC61739B0B60037FED6 /* DFSArtistCell.m */; };
@@ -165,6 +168,11 @@
 		5541E59A173878380029E14E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5541E5AA1738A07F0029E14E /* newD5Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newD5Logo.png; sourceTree = "<group>"; };
 		5541E5AB1738A07F0029E14E /* newD5Logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newD5Logo@2x.png"; sourceTree = "<group>"; };
+		5576F06A17621F48009203D9 /* DFSNumberFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSNumberFormatters.h; sourceTree = "<group>"; };
+		5576F06B17621F48009203D9 /* DFSNumberFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSNumberFormatters.m; sourceTree = "<group>"; };
+		5576F07017623F85009203D9 /* DFSIndexedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSIndexedListView.h; sourceTree = "<group>"; };
+		5576F07117623F85009203D9 /* DFSIndexedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSIndexedListView.m; sourceTree = "<group>"; };
+		5576F07317623FC3009203D9 /* DFSIndexedListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DFSIndexedListView.xib; sourceTree = "<group>"; };
 		55848EBB1739A7180037FED6 /* DFSAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSAlbumViewController.h; sourceTree = "<group>"; };
 		55848EBC1739A7180037FED6 /* DFSAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSAlbumViewController.m; sourceTree = "<group>"; };
 		55848EBE1739A7210037FED6 /* DFSArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSArtistViewController.h; sourceTree = "<group>"; };
@@ -320,6 +328,7 @@
 		5541E54C17308BF70029E14E /* xFade */ = {
 			isa = PBXGroup;
 			children = (
+				5576F06917621F2B009203D9 /* Utilities */,
 				5541E55E17308BF70029E14E /* MainStoryboard.storyboard */,
 				5531D02A173A034900579232 /* DFSSplashViewController.h */,
 				5531D02B173A034900579232 /* DFSSplashViewController.m */,
@@ -391,6 +400,18 @@
 				5541E591173876790029E14E /* UIViewController+JASidePanel.m */,
 			);
 			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		5576F06917621F2B009203D9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5576F06A17621F48009203D9 /* DFSNumberFormatters.h */,
+				5576F06B17621F48009203D9 /* DFSNumberFormatters.m */,
+				5576F07017623F85009203D9 /* DFSIndexedListView.h */,
+				5576F07117623F85009203D9 /* DFSIndexedListView.m */,
+				5576F07317623FC3009203D9 /* DFSIndexedListView.xib */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		55848EC11739A89F0037FED6 /* Songs */ = {
@@ -722,6 +743,7 @@
 				559827EA173A222B0003406A /* ui_hud_viewInactive@2x.png in Resources */,
 				559827EB173A946D0003406A /* Icon@2x.png in Resources */,
 				559827EC173A94730003406A /* Icon.png in Resources */,
+				5576F07417623FC3009203D9 /* DFSIndexedListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +773,8 @@
 				55848EC71739B0B60037FED6 /* DFSArtistCell.m in Sources */,
 				5531D02C173A034900579232 /* DFSSplashViewController.m in Sources */,
 				55D6EB53174ABF8A002E00F5 /* WaveFormViewIOS.m in Sources */,
+				5576F06C17621F48009203D9 /* DFSNumberFormatters.m in Sources */,
+				5576F07217623F85009203D9 /* DFSIndexedListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
