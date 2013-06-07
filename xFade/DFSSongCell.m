@@ -136,8 +136,19 @@
 {
     CGFloat volPercent = self.topView.frame.origin.x / kSongCellWidthWithAlbum;
     
-    [[DFSMusicPlayerManager sharedInstance]audioPlayerB].volume = volPercent;
-    [[DFSMusicPlayerManager sharedInstance]audioPlayerA].volume = 1 - volPercent;
+    if (volPercent < .5)
+    {
+        CGFloat valueB = (((volPercent)*2));
+        [[DFSMusicPlayerManager sharedInstance]audioPlayerB].volume = valueB;
+        [[DFSMusicPlayerManager sharedInstance]audioPlayerA].volume = 1;
+    }
+    
+    if (volPercent > .5)
+    {
+        [[DFSMusicPlayerManager sharedInstance]audioPlayerA].volume =(1-(volPercent))*2;
+        [[DFSMusicPlayerManager sharedInstance]audioPlayerB].volume = 1;
+    }
+    
 }
 
 
