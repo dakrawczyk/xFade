@@ -57,10 +57,23 @@
 {
     [super viewDidAppear:animated];
     
-    self.indexedListView = [[DFSIndexedListView alloc]initWithFrame:CGRectMake(0, 22, 61, 514)];
+    self.indexedListView = [[DFSIndexedListView alloc]initWithFrame:CGRectMake(0, 22, 61, 526)];
+    [self.indexedListView addTarget:self action:@selector(indexedListHandler) forControlEvents:UIControlEventAllTouchEvents];
     self.indexedListView.alpha = 0;
     [self.view addSubview:self.indexedListView];
 
+}
+
+-(void)indexedListHandler
+{
+    NSLog(@"percent = %f",self.indexedListView.percent);
+    
+    CGFloat section = self.songsArray.count * self.indexedListView.percent;
+    
+    
+    NSIndexPath *path = [NSIndexPath indexPathForItem:0 inSection:[[[[DFSNumberFormatters defaultFormatters]numberFormatNoDecimals:0]numberFromString:[NSString stringWithFormat:@"%f",section]] integerValue]];
+    
+    [self.songsTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 -(void)organizeSongs

@@ -25,6 +25,19 @@
     return _sharedObject;
 }
 
+
+-(NSNumberFormatter *)numberFormatNoDecimals:(NSUInteger)decimals {
+    if (!self.numberFormatDecimals) {
+        self.numberFormatDecimals=[[NSNumberFormatter alloc] init];
+        [self.numberFormatDecimals setFormatterBehavior:NSNumberFormatterBehavior10_4];
+        [self.numberFormatDecimals setMaximumFractionDigits:0];
+    }
+    
+    [self.numberFormatDecimals setMaximumFractionDigits:decimals];
+    return self.numberFormatDecimals;
+}
+
+
 -(NSNumberFormatter *)numberFormatPercentageWithDecimals:(NSUInteger)decimals {
     if (!self.numberFormatPercentDecimals) {
         self.numberFormatPercentDecimals=[[NSNumberFormatter alloc] init];

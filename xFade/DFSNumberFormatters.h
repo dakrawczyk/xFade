@@ -11,8 +11,10 @@
 @interface DFSNumberFormatters : NSObject
 
 @property (nonatomic, retain) NSNumberFormatter *numberFormatPercentDecimals;
+@property (nonatomic, retain) NSNumberFormatter *numberFormatDecimals;
 
 -(NSNumberFormatter *)numberFormatPercentageWithDecimals:(NSUInteger)decimals;
+-(NSNumberFormatter *)numberFormatNoDecimals:(NSUInteger)decimals;
 
 +(id) defaultFormatters;
 

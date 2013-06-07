@@ -26,16 +26,29 @@
     }
     return self;
 }
+
+
+- (IBAction)tapDetected:(UITapGestureRecognizer *)gesture
+{
+    [self sendLocationOfGesture:gesture];    
+}
+
 - (IBAction)panDetected:(UIPanGestureRecognizer *)gesture
 {
+    [self sendLocationOfGesture:gesture];
+}
+
+-(void)sendLocationOfGesture:(UIGestureRecognizer *)gesture
+{
+    
     CGPoint translation = [gesture locationInView:self];
     
+    self.percent = translation.y / self.frame.size.height;
+    
+//    NSLog(@"%f",self.percent);
+    
+    [self sendActionsForControlEvents:UIControlEventAllTouchEvents];
 
-    CGFloat percent = translation.y / self.frame.size.height;
-    
-    NSLog(@"%f",percent);
-    
-    
 }
 
 @end

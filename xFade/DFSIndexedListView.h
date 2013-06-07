@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DFSIndexedListView : UIView
+@interface DFSIndexedListView : UIControl
+
+@property (nonatomic) CGFloat percent;
 
 @end
