@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *songsTableView;
 
 @property (nonatomic, strong) NSArray *songsArray;
-@property (nonatomic, strong) NSNumber *currentSyncingCell;
+@property (nonatomic, strong) NSIndexPath *currentSyncingCell;
 @property (nonatomic, strong) NSMutableDictionary *songDict;
 @property (nonatomic, strong) DFSIndexedListView *indexedListView;
 @property (nonatomic, strong) NSTimer *indexedListTimer;
@@ -197,6 +197,7 @@
 
     cell.syncButton.tag = indexPath.row;
     
+    
      NSArray *array = self.songDict[self.songsArray[indexPath.section]];
      MPMediaItem *item = array[indexPath.row];
 
@@ -234,30 +235,35 @@
 
 - (IBAction)syncPressed:(UIButton *)button
 {
+    DFSSongCell *cell = (DFSSongCell *) button.superview.superview;
+    NSIndexPath *iP = [self.songsTableView indexPathForCell:cell];
+    NSArray *array = self.songDict[self.songsArray[iP.section]];
 
     button.selected = !button.selected;
     if (button.selected)
     {
+        
         if (self.currentSyncingCell)
         {
-            [self closeCellAtIndex:[self.currentSyncingCell intValue]];
+            [self closeCellAtIndex:iP];
         }
-        self.currentSyncingCell = @(button.tag);
-        [[DFSMusicPlayerManager sharedInstance]loadSongDeckB:self.songsArray[button.tag]];
-        [[DFSMusicPlayerManager sharedInstance] playSongB:self.songsArray[button.tag]];
+        self.currentSyncingCell = iP;
+        
+        [[DFSMusicPlayerManager sharedInstance]loadSongDeckB:array[iP.row]];
+        [[DFSMusicPlayerManager sharedInstance] playSongB:array[iP.row]];
         self.songsTableView.scrollEnabled = NO;
-        [self.songsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self.songsTableView scrollToRowAtIndexPath:iP atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }else
     {
-        [self closeCellAtIndex:button.tag];
+        [self closeCellAtIndex:iP];
     }
 }
 
--(void)closeCellAtIndex:(int)idx
+-(void)closeCellAtIndex:(NSIndexPath*)idx
 {
     [[[DFSMusicPlayerManager sharedInstance] audioPlayerB]stop];
     [[DFSMusicPlayerManager sharedInstance] setDeckBCurrentItem:nil];
-    DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+    DFSSongCell *cell =  (DFSSongCell *)[self.songsTableView cellForRowAtIndexPath:idx];
     cell.syncButton.selected = NO;
     [cell slideForOpen:NO];
     self.currentSyncingCell = nil;
